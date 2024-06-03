@@ -772,10 +772,16 @@ then
     then
         die "Group $username already exists."
     fi
-    useradd --no-create-home --disabled-password \
-        --gecos "Koha instance $username" \
-        --home "/var/lib/koha/$name" \
-        --quiet "$username"
+    #useradd --no-create-home --disabled-password \
+     #   --gecos "Koha instance $username" \
+     #   --home "/var/lib/koha/$name" \
+     #   --quiet "$username"
+
+
+useradd -r -s /bin/false \
+    -c "Koha instance $username" \
+    -d "/var/lib/koha/$name" \
+    "$username"
 
     # Create the site-specific directories.
     koha-create-dirs "$name"
